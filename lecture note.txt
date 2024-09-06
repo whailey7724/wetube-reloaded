@@ -1,0 +1,90 @@
+1. What is NodeJs ?
+    : 크롬 자바스크립트 엔진으로 빌드된 자바스크립트 런타임
+    : 브라우저 밖에서 사용할 수 있는 자바스크립트
+    자바스크립트가 처음 만들어졌을 때, 자바스크립트는 브라우저에서만 사용되었음. _브라우저를 위해서 고안된 거였기 때문
+    자바스크립트를 만든 이유 => 웹사이트와 조금 더 상호작용을 하기 위해서
+
+    그런데 인터넷이 널리 퍼지고 모두가 인터넷을 쓰게 되니까 자바스크립트가 가장 유명한 언어가 됨..
+    ---> 브라우저를 가진 모든 컴퓨터는 자바스크립트가 설치되어있음 (자바스크립트를 처리할 수 있음, 따로 무언가를 설치하지 않아도 브라우저만 설치되어있다면!)
+
+    Ryan이 NodeJs를 만듦. 웹 말고도 다른 곳에서도 자바스크립트를 쓰고 싶어서.. 
+    -> 전에는 자바스크립트가 다른 것과 함께 섞여서 나왔음(html, css, 브라우저와 같이)
+        근데 Ryan은 자바스크립트를 브라우저에서 분리해서 NodeJs를 만듦. ---> 웹 말고도 다른 곳에서 쓸 수 있게 됨(파이썬, 자바, C와 같이 프로그래밍 언어로 만듦)
+
+    NodeJs 덕분에... --> React Native, Electron(데스크탑 앱을 만들 수 있음) 을 사용할 수 있게 됨
+            __JS, HTML, CSS로 유저들이 프로그램을 다운 받고 설치해서 쓸 수 있게 만들 수 있다는 것.
+                (Electron으로 만든 앱으로는 VSCode가 있음 _VSCode는 HTML, CSS, JS, NodeJs로 만들어짐)
+
+
+2. What is npm ?
+    : 자바스크립트 언어를 위한 패키지 매니저 (npm is a package manager for the JavaScript programming language)
+        = npm과 nodeJS를 같이 써야한다는 뜻. _npm은 nodeJS와 상호작용을 할 수 있게 해줌 _nodeJS패키지를 다운받을 수 있게 해주고, 앞으로 배울 것들을 다 하게 해줌~
+        npm은 아무나 사용할 수 있고 이미 설치되어 있음..
+        nodeJS는 npm 없어도 쓸 수는 있는데, 기본적으로 npm은 nodeJS와 같이 설치됨.
+    - yarn이라는 패키지 매니저도 있음 _ 페이스북이 만든 건데, 사용법은 비슷함.
+    --> 그치만 이 강의에서는 npm을 집중적으로 사용할 것임. __ 둘 사이에 차이점은 거의 없지만, npm은 기본적으로 nodeJS와 같이 설치됨. 그래서 nodeJS를 설치하면 npm을 바로 사용할 수 있음.
+
+    -node 명령어는 거의 사용할 일이 없고 주로 npm 명령어를 사용하게 될 것
+
+    - 패키지 매니저?
+     - 여러 사람들이 패키지를 만들어서 올려주는데, 우리는 이 패키지를 가져다가 쓸 수 있다. 왜냐하면 이 패키지들은 개발을 정말 쉽게 만들어줌.
+     - 패키지는 계속 새로 만들어지고, 많은 사람들이 사용하는 유용한 패키지도 있음. 우리는 그걸 쓸 건데, npm으로 패키지를 공유할 수 있음
+     npm은 서로를 연결시켜주고 패키지를 다운받을 수 있게 해줌. npm 덕분에 NodeJS가 크게 성장할 수 있었음!
+     - npm을 사용하면 다른 누군가가 이미 만들어놓은 패키지를 가져다 쓰기 정말 쉬움 -> 개발하는 시간을 엄청 줄일 수 있음.
+
+
+
+< #2.0 Your First NodeJS Project >
+3. json
+ : 프로그래머가 파일에 정보를 저장하기 위해서 만든 방식 중 하나 _파일에 정보를 입력하는 방법. 
+    -json 파일은 주석을 지원하지 않음..
+    - nodeJS인 경우 이런 파일의 이름은 package.json 이어야 함. 이건 바꿀 수 없음! Package.json도 안됨 소문자로~!
+        - 파일명은 꼭 이렇게 지어야 하고, nodeJS 프로젝트를 만들 때 가장 먼저 만들어야 할 파일. 
+        - 이게 nodeJS의 장점 중 하나. 시작점이 정말 작다는 것! 아주 작은 것에서부터 시작~ 파일 2개만 있어도 프로젝트로 만들 수 있음.
+
+console 창에 npm init (node 명령어가 아님! npm 명령어임) --> npm이 package.json을 만들어줌.
+
+    - package.json은 그냥 텍스트 파일인데 어떤 프로그래머가 특이한 json 형식을 만든 것. 
+        - main : 프로젝트의 대표 파일이 뭔지 알려주는 것
+
+
+
+< #2.1 Installing Express >
+- 우리가 만들고 배포한 package를 다른  사람들이 설치하면 main을 사용할 것임(package.json에 main이라고 써져있는 페이지) _그렇지만 main을 지워도 상관없음. main은 필수 요소가 아님!
+- 오늘 해볼 것~! package.json에 scripts를 추가해보기~!
+    - scripts : 실행하고 싶은 것을 말함. 
+    - scripts 안에 "win": "node index.js" 라고 적고 콘솔 창에 npm run win 이라고 적어주면 index.js 파일을 실행함 (package.json에서 실행해준 거임)
+        - 이걸 하려면 프로젝트 폴더 안에서! 사용해야 됨. 만약 폴더 밖이나, package.json이 없는 폴더에서 npm run win을 실행하면 작동하지 않음.. _우리가 실행하는 모든 명령어는 package.json이 있는 곳에서 실행해야됨
+
+- npm을 통해서 패키지를 설치해보자!! >> npm i 패키지명 / npm install 패키지명 ----> install 대신 i만 써도 됨 / 패키지명은 npm사이트에서 봤던 이름 그대로 써야 함. 
+    - node_modules라는 폴더.. -> npm으로 설치한 모든 패키지가 저장됨.
+        -npm i express를 실행하면 해당 패키지가 어딘가에 저장되어야 함.. 그게 node_modules 폴더에 저장됨. 내가 직접 만들 필요는 없고 알아서 폴더를 만듦.
+    - express를 사용할 때는 다른 패키지도 필요함. express는 혼자 작동되지 않음. 그래서 node_modules를 보면 다른 많은 게 보임.
+    - express도 package.json 파일을 가지고 있음. 
+        - 살펴보면 dependencies 라는 항목이 있음.
+            dependencies : express가 작동되려면 필요한 패키지들을 말함. express를 쓸 때 필요한 패키지들. (프로젝트를 구동시키는 데 필요한 모듈들)
+                - npm install express를 실행하면 express를 다운받고 dependencies도 같이 다운받음. 각각의 패키지들 전부 각자 package.json을 가지고 있음.
+                - 패키지를 설치할 때 필요한 dependencies를 같이 다운받고, 그 dependencies들의 dependencies들도 같이 다운받음.. npm이 체인처럼 연결된 dependencies를 해석해서 모든 폴더들을 다운받음
+    - 다운받고 나니까 우리가 만든 package.json에 express dependencies가 생김! 
+        - npm i express를 했을 때 npm이 알아서 dependencies에 추가해준 것. 
+        --> 내 프로젝트를 사용하기 위해서 express가 있어야 한다는 뜻. 
+
+
+
+< #2.2 Understanding Dependencies >
+- 지난 강의에서.. npm으로 다운받은 폴더를 다 삭제함.. node_modules 와 package-lock.json 삭제!!
+- 그리고 npm i 만 콘솔창에 쳤더니.. 알아서 다운받아줌. 우리의 package.json에 있는 dependencies 안에 있는 모듈들을 알아서 설치해줌. >> npm이 package.json을 보고 필요한 걸 설치해줌.
+- package.json에는 author, license, bugs 같은 정보들도 있지만, 프로젝트를 동작시킬 때 필요한 모듈들이 어떤 건지 정보도 담고 있음. >> 이게 중요함!!
+    - 컴퓨터를 바꾸거나 팀으로 개발할 때.. node_modules 폴더를 올릴 필요가 없음(아주 용량이 크기 때문에.. 오래걸림). 폴더를 보내는 대신 dependencies를 알려주면 됨! 필요한 정보는 dependencies에 다 있기 때문에~
+        - 프로젝트를 공유하고 싶으면 package.json과 index.js만 보내주면 됨~
+
+4. package-lock.json
+    - 나의 패키지들을 안전하게 관리해줌. 패키지가 수정되었는지 해시값으로 체크해주고.. 말 그대로 잠겨(lock)있음
+    - 만약 우리 프로젝트가 package.json으로 동작하는데 다른 사람이 이 package.json으로 express를 설치하면(npm i express로 설치한다는 뜻이 아님)
+        - package.json, package-lock.json, index.json을 주고 npm i만 하면 그 사람도 똑같은 버전의 모듈을 설치하게 되는 것. 이건 정말 좋은 것임 나의 코드가 확실하게 동작할 거라는 뜻~ 
+            - 버전까지 똑같이.. debug, encodeurl, statuses도 딱 그 버전으로 설치됨. 이 버전 숫자를 정확하게 해야 함.. 그런데 이걸 우리가 관리할 필요가 없음! npm이 알아서 처리해줄 것~
+  >> 우리에게는 dependencies가 있기 때문에 npm i를 하면 알아서 dependencies에 해당하는 모듈들을 설치해줄 것.
+
+** 주의사항
+npm install을 할 경우에는 package.json을 꼭 닫고 !! 실행할 것.
+    - 만약 package.json이 저장이 되지 않은 상태로 열려있는데 npm install을 진행할 경우 버전 충돌이 일어날 수 있음 >> npm이 dependencies를 수정하기 때문에..~ (package.json을 수정하기 때문에)
