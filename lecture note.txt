@@ -116,3 +116,33 @@ npm install을 할 경우에는 package.json을 꼭 닫고 !! 실행할 것.
                 - preset은 babel을 위한 엄청 거대한 플러그인. 특히 preset-env가 가장 유명함. 왜냐하면 이것은 smart preset이기 때문. 이 preset을 사용하면 최신 자바스크립트 구문을 사용할 수 있게 해줌
                 - preset은 여러 가지가 있는데, 제일 유명한 것이 @babel/preset-env. reactJS와 typescript에서 쓸 수 있는 것도 있음(홈페이지 참고)
                 - preset은 플러그인이라는 것만 알고 있으면 됨!
+
+
+
+< #2.4 Nodemon >
+- 바벨 홈페이지에 보면 바벨 사용법이 나와있는데, 그대로 사용하지 않을 것임. 왜냐? 우리는 자바스크립트에서 직접 바벨을 사용하지 않을 것이기 떄문~
+    - 대신 우리는 package.json에 babel로 컴파일하는 scripts를 만들 거임. 
+        -> 이걸 위해서 nodemon 이라는 것을 쓸 거임! --> babel/node 설치 (npm install @babel/node --save-dev)
+
+    - package.json의 win 부분을 dev로 바꿔주고(development) babel-node를 쓰고 싶다고 알려줄거임. 그리고 어떤 파일을 실행할지 babel 설정까지
+        => "dev": "babel-node index.js"
+            - @babel/node를 설치했기 때문에 babel-node라는 명령어를 쓸 수 있는 것
+        - 이걸 실행하면 nodeJS가 실행되는데 babel도 같이 적용돼서 실행될 것.. -> 최신 문법 코드를 동작할 수 있다!
+- 이렇게 해서 index.js에 코드를 작성하고 콘솔창에 npm run dev라고 하면 index.js를 실행할 수 있다.
+    - 그러나 이렇게 하게 되면 수정할 때마다 실행해줘야 함. 
+
+6. Nodemon
+    : 우리가 만든 파일이 수정되는 걸 감시해주는 패키지. 파일이 수정되면 nodemon이 알아서 재시작해줌.
+        -모~든 걸! 그러면 npm run dev를 계속 실행할 필요가 x
+        - npm i nodemon --save-dev
+    --> 위에서 수정했던 것처럼 다시 수정 "dev": "nodemon --exec babel-node index.js"
+            --exec 옵션 뒤에 babel-node index.js를 써서 실행하게 만듦
+        - 이제 npm run dev를 실행하면 색깔 있는 문자가 나오는데.. 이렇게 하면 babel-node index.js를 실행하고 나서도 콘솔창이 종료되지 않음. 이제 파일을 수정할 때마다 nodemon이 알아서 재시작해줌.
+
+* 우리는 node로 실행하는 것이 아니라 babel-node로 실행하고 있음! 그래서 최신 코드를 사용할 수 있음.
+
+- 우리가 만든 scripts가 전보다 많은 기능을 하고 있어~~!
+    - 설치된 nodemon 패키지를 쓰고, --exec babel-node index.js를 쓰고 있다. 
+    - nodeJS로 index.js를 실행하는 node index.js로 시작해서 이제는 babel-node를 써서 babel이 nodeJS를 실행하게 만들고, 최신 문법 코드로 index.js를 실행하고 있음 
+      그리고 babel-node index.js를 실행하는 nodemon도 쓰고 있음 ---> index.js를 수정할 때마다 nodemon이 알아서 재시작.. 이제는 매번 npm run dev를 칠 필요가 없다! 한 번만 실행하면 됨
+

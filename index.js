@@ -1,3 +1,1 @@
-const express = require("express");
-
-const app = express();
+console.log("돈이 짱많이 생겼으면 좋겠다.. 컴퓨터도 사고 강의도 사고 풀트래커도 사게..");
