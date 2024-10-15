@@ -100,3 +100,19 @@ app.get("/", () => console.log("Somebody is trying to go home."))
 # res.send()
 - 그냥 끝내는 거 말고 메세지 보내기.
 - 화면에 () 안의 메세지를 출력해줌.
+
+
+
+
+< #3.4 Recap >
+- express에서 가장 중요한 부분은 application.
+    - application에는 두 개의 속성(locals, mountpath)과 수많은 method가 있음
+        - 그 method 중 하나가 get.
+- express에 대해서 알아야 할 아주 중요한 세 가지 (request, respond, 나머지 하나는? )
+    - request object에는 많은 속성들이 있음 __ 나중에 express 페이지 읽어보기
+    - response 에는 또 다른 method들이 있음
+        - 텍스트도 보낼 수 있고, html도 보낼 수 있고, status도 보낼 수 있고, 파일도 보낼 수 있고, 사용자가 download하게 해줄 수도 있고, JSON도 보낼 수 있고..~
+- request라는 object는 파일을 포함하고 있을 때도 있고, search query를 갖고 있기도 하고, 어떤 때는 username이나 password도 있음
+    - 이런 정보들을 request로 받는 것은 아주 쉬움.
+    - 응답을 해줘야 함. 반드시! 응답해주지 않으면 브라우저는 계속 기다릴 것. 그러다가 포기하고 "응답을 받지 못했습니다"라고 할 것.
+    - 텍스트, html, 파일, status code 등 많은 걸 전달할 수 있음
