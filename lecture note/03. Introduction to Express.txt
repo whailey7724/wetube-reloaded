@@ -28,3 +28,75 @@ server :  24시간 온라인에 접속중인 켜져있는 컴퓨터
         - 접속하기 전에 서버를 열어야함.. npm run dev
 
 
+
+
+
+
+
+< #3.1 ~ 3.2 GET Requests >
+- 서버를 만들었어~! 그리고 저장할 때마다 서버가 재시작됨. 서버를 신선하게 유지해~
+- 서버가 request에 respond하게 해보자
+
+- Cannot GET /
+    - / : 서버의 root, 첫 페이지.
+    - GET : HTTP method.
+    
+# HTTP란?
+ : 우리가 서버랑 소통하는 방법. 서버가 서로 소통하는 방법.
+ - 많은 방법 중 하나지만 가장 안정적이고, 오래되고, 처음 사용된 방식.
+ - 유저들이 접속하려고 할 때, 유저들은 http request를 만들어서 보냄. 사실 직접 만드는 것은 아니고, 브라우저가 대신해서 http request를 만들어줌.
+    - http request : 웹사이트에 접속하고 서버에 정보를 보내는 방법
+ - GET은 http의 많은 method 중 하나임. 페이지를 갖다줘(get)~ 와 같이 쓰인 것. (여러 종류의 request 중 하나)
+    - 아무 것도 안했지만 브라우저에 접속하려고 할 때 브라우저는 자동으로 이 페이지를 get하려고 함.
+    - 웹사이트에 접속할 때 내가 직접 접속하는 것이 아니라 웹사이트에게 저 홈페이지 갖다줘. 라고 하는 것
+        - 홈페이지 외에도, 프로파일 페이지, 로그인 페이지 등등 갖다줘~
+        -> 이게 웹사이트에 접속할 때 일어나는 일. 내가 웹사이트에 접속하는 것이 아니라 웹사이트가 나에게 오게 하는 것. 브라우저가 그렇게 만듦
+
+- 웹사이트에 접속할 때 브라우저가 나를 어디론가 데려가는 것이 아니라 브라우저가 나를 대신해서 웹사이트를 request하고 페이지를 가져다 주는 것
+
+
+# 
+- request : 유저가 뭔가를 요청하거나, 보내거나 하는 행위
+- get request => 웹사이트를 가져와달라는 request
+    - get request에는 route가 있음. cannot get / 의 경우에는 목적지가 /(home) 인 것
+
+app.get("/", () => console.log("Somebody is trying to go home."))
+    - button.addEventListener("click", handleClick); 이거랑 똑같은 것
+    - 누군가 root page(/)로 get request를 보낸다면 함수를 작동시켜라
+    - 함수를 반드시 보내야됨! 함수가 없으면 실행이 안됨 _ () => 이거
+        - 이게 이상하면 함수를 정의하고 함수 이름 쓰는 식으로 해도 됨
+-> 서버는 이제 get requests에 반응할 수 있어~! -> 그래서 cannot get / 하고 에러메세지가 뜨지 않는 것
+
+- 근데 문제는 브라우저가 우리에게 무언가를 요청했는데, 해주는 것이 아무 것도 없음.. 브라우저는 우리를 기다리기만 함.. 영원히.. 
+
+# request는 어떻게 동작하는 것일까?
+- 일단 request부터 시작함. request는 브라우저가 "나 이 URL 좀 가져다줘"라고 하는 것.
+
+
+
+
+
+< #3.3 Responses >
+- request를 하는 방법 중 하나는 url에게 get request를 보내는 것.
+    - 이 경우는 / 이게 home url. /login으로 get request를 보낼 수도 있음
+    - url은 내가 선택할 수 있음. 
+    - 특정 url에 접속하려 할 때마다 get request를 생성하고, 이 get request에 응답하는 서버가 있어야 한다는 것을 알게 되었다~!
+
+- 바닐라JS에서, eventListener에는 handler가 있고, handler에는 event가 있음
+- express에서는 route handler에는 event는 없지만, request(req) object와 respond(res) object가 있음.
+    - 이름은 꼭 req, res라고 할 필요는 없음. 
+    - 핵심은 첫 번째 argument는 request object고, 두 번째 argument는 respond object라는 것.
+        - 어떤 이름을 써도 상관없지만, 꼭 두 개가 있어야 함.
+    - request와 response는 express로부터 받은 것.
+        - 즉, home으로 get response가 오면, express는  handleHome에다가 request와 response object를 넣어줄 것.
+        - 이게 express가 하는 일
+
+# res.end()
+- request를 받았으면 response를 return해야됨
+- res.end(); ---> 서버가 request를 끝내줌. request를 종료함.
+    - request를 종료시키는 여러 가지 방법이 있는데, 이게 그 중 하나.
+    - 서버는 브라우저에게 아무 것도 보내지 않음. 그저 빈 화면. respond는 없지만, 더 이상 브라우저가 기다리지는 않음. request를 끝냈으니까.
+
+# res.send()
+- 그냥 끝내는 거 말고 메세지 보내기.
+- 화면에 () 안의 메세지를 출력해줌.
