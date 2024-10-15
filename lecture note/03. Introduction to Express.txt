@@ -1,0 +1,30 @@
+< #3.0 Your First Server >
+
+- server.js 생성!
+- import import express from "express";
+    - "express"라는 package를 express라는 이름으로 import해온 것
+    - NodeJS와 npm은 굉장히 똑똑하기 때문에, 이렇게 입력하면 node_modules에서 express를 찾고 있다는 걸 알아냄
+        - node_modules/express라고 할 필요가 없음
+    - import from을 사용하면 "express"가 node_modules에서 찾아지는 것.
+      npm과 NodeJS가 node_modules에서 express를 나올 때까지 찾아보고, 찾은 express의 index.js를 불러오는 것.
+
+# express 사용하는 법
+먼저, express application을 만들어야 함 _ express 설계를 위한 규칙임
+- express() 을 사용하면 express application을 생성해줌
+
+
+# What is server?
+server :  24시간 온라인에 접속중인 켜져있는 컴퓨터
+    - request : 서버와 상호작용하는 모든 것
+    - 그리고 서버는 이 request를 listen함
+    -> 서버를 만드려면 사람들이 무언가를 요청할 때까지 기다리게 해야 함 --> app.listen()
+        - listen에는 callback이 있음.
+        - callback : 서버가 시작할 때 작동하는 함수.    (바닐라JS에서 handleClick 같은 것, 바닐라JS의 click event와 비슷함)
+            - callback을 작성하기 전에, 서버에게 어떤 port를 listening할 지 얘기해줘야 함.
+                - 컴퓨터에는 수많은 port가 있기 때문에..
+                - port는 컴퓨터의 문이나 창문 같은 것. 몇몇 port들은 인터넷에 오픈되어 있음
+                - 보통 높은 숫자의 port들은 비어있음.
+    - 보통 서버를 시작했다면 localhost를 통해서 접속할 수 있음. localhost와 port 번호 (localhost:4000)
+        - 접속하기 전에 서버를 열어야함.. npm run dev
+
+

@@ -8,7 +8,7 @@
     "url": "(https://github.com/whailey7724/wetube-reloaded)"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node index.js"
+    "dev": "nodemon --exec babel-node src/server.js"
   },
   "author": "Whailey7724",
   "license": "MIT",
